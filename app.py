@@ -1,6 +1,6 @@
 # -*- coding:UTF-8 -*-
 import streamlit as st
-
+import pandas as pd
 
 def main():
     # title
@@ -37,6 +37,43 @@ def main():
     st.help(st.title)
 
     # 데이터 불러오기
+    iris = pd.read_csv('data/iris.csv')
+
+    st.title("IRIS 테이블")
+    st.dataframe(iris, 200, 100) # Height, Width
+
+    st.title('write()')
+    st.write(iris)
+
+    myCode = """
+        def hello():
+            print("hi")
+        """
+    st.code(myCode, language="Python")
+
+    # 위젯, button 기능활용
+    name = "Kwon"
+    if st.button('Submit'):
+        st.write(f"name : {name.upper()}")
+
+    # RadioButton
+    s_state = st.radio('Status', ('활성화', '비활성화'))
+    if s_state == '활성화':
+        st.success('활성화 상태')
+    else:
+        st.error('비활성화 상태')
+
+    # check Box
+    if st.checkbox('show/hide'):
+        st.text('무언가를 보여줘!!')
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
